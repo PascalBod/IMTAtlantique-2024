@@ -224,6 +224,15 @@ Hello from app_main!
 
 If you have successfully reached this step, you're done with the prerequisites. You can unplug the ESP-EYE and wait for the first course session with confidence &#x1F642;
 
+## Clone the repository
+
+With git, clone the repository on your computer, for instance in a directory named `Dev`:
+```shell
+$ mkdir ~/Dev
+$ cd ~/Dev
+$ git clone git@github.com:PascalBod/IMTAtlantique-2024.git
+```
+
 ## Command line tools (optional)
 
 The IDF plugin allows to perform all usual development actions from Eclipse.
