@@ -27,8 +27,12 @@ void app_main(void) {
 
 	esp_err_t es_rs;
 
+	press_detected = false;
+
 	// TODO - Configure the ESP32 so that the above ISR (gpio_interrupt_handler)
 	// is called when the side button is pushed.
+	// Note: use gpio_install_isr_service function.
+	// TODO - Why to use gpio_install_isr_service instead of gpio_isr_register?
 
 	// Configure for wakeup.
 	es_rs = gpio_wakeup_enable(GPIO_NUM_15, GPIO_INTR_LOW_LEVEL);
