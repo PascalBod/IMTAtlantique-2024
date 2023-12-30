@@ -1,7 +1,7 @@
 # Prerequisites
 
 > [!NOTE]
-> Instructions below are for a computer running [Linux Mint](https://linuxmint.com/), a distribution based on Ubuntu. Additionally, notes provide some information for macOS. Thanks to [Laurent Toutain](https://github.com/ltn22) for them!
+> Instructions below are for a computer running version 21.2 of [Linux Mint](https://linuxmint.com/), a distribution based on Ubuntu. Additionally, notes provide some information for macOS. Thanks to [Laurent Toutain](https://github.com/ltn22) for them!
 
 ## Eclipse
 
