@@ -105,7 +105,7 @@ If the displayed Eclipse window is almost empty, click the *Restore* icon on the
 ## ESP-IDF
 
 Now, ESP-IDF has to be installed. Follow the instructions of the [*Installing ESP-IDF* section](https://github.com/espressif/idf-eclipse-plugin#installing-esp-idf) of the IDF plugin documentation, taking into account the following additional information:
-* Replace the proposed 5.1.1 version of ESP-IDF by the 5.0.4 version
+* Replace the proposed version (5.1.2 or greater) of ESP-IDF by the 4.4.6 version. This is **very important**
 * Set directory where to download ESP-IDF to the `DevTools` subdirectory
 
 A window informs you that the installation of a new set of tools could be required. Click the *Yes* button.
@@ -222,7 +222,7 @@ Hello from app_main!
 Hello from app_main!
 ```
 
-If you have successfully reached this step, you're done with the prerequisites. You can unplug the ESP-EYE and wait for the first course session with confidence &#x1F642;
+If you have successfully reached this step, you're done with the installation of the development environment. You can unplug the ESP-EYE and wait for the first course session with confidence &#x1F642;
 
 ## Clone the repository
 
