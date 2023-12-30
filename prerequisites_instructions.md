@@ -12,7 +12,7 @@ Go to the [Eclipse Installer 2023‑03 R web page](https://www.eclipse.org/downl
 ![Eclipse download link](images-readme/eclipseInstallerDownload.png)
 
 > [!IMPORTANT]
-> The link above points to version 2023-03 of Eclipse for C/C++ Developers. Be sure to download this version.
+> The link above points to version 2023-03 of Eclipse Installer. Be sure to download this version.
 
 Extract the contents of the downloaded file into a directory. For what follows, we consider that this directory is `~/DevTools`.
 
