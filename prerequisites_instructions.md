@@ -241,7 +241,7 @@ Some very specific actions may require to use the command line. On Linux, the fo
 
 * Enter the ESP-IDF directory:
 ```shell
-$ cd ~/DevTools/esp-idf-v5.0.4
+$ cd ~/DevTools/esp-idf-v4.4.6
 ```
 * Add the *execute* mode to some files:
 ```shell
@@ -251,5 +251,5 @@ $ chmod +x tools/*.py
 ```
 * Before running a tool, set up the environment:
 ```shell
-$ . ~/DevTools/esp-idf-v5.0.5/export.sh
+$ . ~/DevTools/esp-idf-v4.4.6/export.sh
 ```
