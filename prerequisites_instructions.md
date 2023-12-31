@@ -105,7 +105,7 @@ If the displayed Eclipse window is almost empty, click the *Restore* icon on the
 ## ESP-IDF
 
 Now, ESP-IDF has to be installed. Follow the instructions of the [*Installing ESP-IDF* section](https://github.com/espressif/idf-eclipse-plugin#installing-esp-idf) of the IDF plugin documentation, taking into account the following additional information:
-* Replace the proposed version (5.1.2 or greater) of ESP-IDF by the 4.4.6 version. This is **very important**
+* Replace the proposed version (5.1.2 or greater) of ESP-IDF by the 5.0.5 version
 * Set directory where to download ESP-IDF to the `DevTools` subdirectory
 
 A window informs you that the installation of a new set of tools could be required. Click the *Yes* button.
@@ -241,7 +241,7 @@ Some very specific actions may require to use the command line. On Linux, the fo
 
 * Enter the ESP-IDF directory:
 ```shell
-$ cd ~/DevTools/esp-idf-v4.4.6
+$ cd ~/DevTools/esp-idf-v5.0.5
 ```
 * Add the *execute* mode to some files:
 ```shell
@@ -251,5 +251,5 @@ $ chmod +x tools/*.py
 ```
 * Before running a tool, set up the environment:
 ```shell
-$ . ~/DevTools/esp-idf-v4.4.6/export.sh
+$ . ~/DevTools/esp-idf-v5.0.5/export.sh
 ```
