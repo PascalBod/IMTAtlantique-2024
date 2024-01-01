@@ -10,10 +10,10 @@
 #define RED_LED GPIO_NUM_21
 
 // Timer period, in microseconds.
-#define TIMER_PERIOD_MICROS 500000
+#define TIMER_PERIOD_US 500000
 
 // Time period to wait for before stopping, in microseconds.
-#define RUN_PERIOD_MICROS 20000000
+#define RUN_PERIOD_US 20000000
 
 static const char TAG[] = "TIM";
 static const DRAM_ATTR char DRAM_TAG[] = "TIM";
@@ -44,7 +44,7 @@ void app_main(void)
     // period TIMER_PERIOD_MICROS.
 
 	// Let's wait a bit before exiting.
-	usleep(RUN_PERIOD_MICROS);
+	usleep(RUN_PERIOD_US);
 
 	// TODO - Stop and deallocate timer resources.
 

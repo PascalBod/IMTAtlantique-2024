@@ -1,10 +1,11 @@
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include <stdbool.h>
+#include <unistd.h>
 
 #include "driver/gpio.h"
 #include "esp_log.h"
 
-#define POLL_PERIOD_MS 333
+// Polling period, in microseconds.
+#define POLL_PERIOD_US 333000
 
 static const char TAG[] = "BTN";
 
@@ -34,7 +35,7 @@ void app_main(void)
 
 	while (true) {
 		// TODO - Add here code to read value of GPIO 15 and to display it.
-		vTaskDelay(pdMS_TO_TICKS(POLL_PERIOD_MS));
+		usleep(POLL_PERIOD_US);
 		// TODO - Answer the question: why the delay, above?
 		// TODO - Can you list two drawbacks of the "architecture" of this code?
 	}

@@ -1,5 +1,4 @@
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include <stdbool.h>
 
 #include "driver/gpio.h"
 #include "driver/uart.h"
@@ -8,9 +7,6 @@
 
 // Side button is connected to GPIO15 (check the schematic).
 #define GPIO_SIDE_BUTTON GPIO_NUM_15
-// Wait period between two successive checks of the button press
-// flag, in ms.
-#define CHECK_PERIOD_MS 100
 
 static const char TAG[] = "BTN";
 
