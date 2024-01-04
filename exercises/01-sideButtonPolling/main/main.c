@@ -34,10 +34,17 @@ void app_main(void)
 	// At this stage, GPIO configuration is OK.
 
 	while (true) {
+
 		// TODO - Add here code to read value of GPIO 15 and to display it.
+
+		// If we don't sleep a little, ESP-IDF considers there is a problem:
+		// a watchdog resets the microcontroller. Minimum period is 10 ms.
 		usleep(POLL_PERIOD_US);
+
 		// TODO - Answer the question: why the delay, above?
+
 		// TODO - Can you list two drawbacks of the "architecture" of this code?
+
 	}
 
 	exit_on_fatal_error:

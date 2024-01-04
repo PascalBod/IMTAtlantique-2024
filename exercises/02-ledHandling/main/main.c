@@ -1,6 +1,5 @@
 #include <stdbool.h>
 #include <stdint.h>
-
 #include <unistd.h>
 
 #include "driver/gpio.h"
