@@ -6,7 +6,7 @@
 #include "esp_log.h"
 
 #define TASK1_PERIOD_MS  20
-#define TASK2_PERIOD_MS  39
+#define TASK2_PERIOD_MS  27
 
 #define MULTIPLIER1 2
 #define MULTIPLIER2 3
@@ -16,27 +16,20 @@ static const char TAG[] = "010";
 typedef struct {
     uint32_t i;
     uint32_t j;
-    uint32_t k;
 } sharedStruct_t;
 
-static volatile sharedStruct_t sharedStruct = {0, 0, 0};
+static volatile sharedStruct_t sharedStruct = {0, 0};
 
 void vTaskCode1(void *pvParameters) {
 
     while (true) {
-        sharedStruct.i = 100;
         vTaskDelay(pdMS_TO_TICKS(TASK1_PERIOD_MS));
-        sharedStruct.j = 100;
+        sharedStruct.i = 111;
         vTaskDelay(pdMS_TO_TICKS(TASK1_PERIOD_MS));
-        sharedStruct.k = sharedStruct.i - sharedStruct.j;
-        vTaskDelay(pdMS_TO_TICKS(TASK1_PERIOD_MS));
-        sharedStruct.i = 0;
-        vTaskDelay(pdMS_TO_TICKS(TASK1_PERIOD_MS));
-        sharedStruct.j = 0;
-        ESP_LOGI(TAG, "1 - %lu %lu %lu",
+        sharedStruct.j = 111;
+        ESP_LOGI(TAG, "1 - %lu %lu",
                  sharedStruct.i,
-                 sharedStruct.j,
-                 sharedStruct.k);
+                 sharedStruct.j);
     }
 
 }
@@ -44,19 +37,13 @@ void vTaskCode1(void *pvParameters) {
 void vTaskCode2(void *pvParameters) {
 
     while (true) {
-        sharedStruct.j = 200;
         vTaskDelay(pdMS_TO_TICKS(TASK2_PERIOD_MS));
-        sharedStruct.k = 200;
+        sharedStruct.i = 222;
         vTaskDelay(pdMS_TO_TICKS(TASK2_PERIOD_MS));
-        sharedStruct.i = sharedStruct.i - sharedStruct.j;
-        vTaskDelay(pdMS_TO_TICKS(TASK2_PERIOD_MS));
-        sharedStruct.j = 0;
-        vTaskDelay(pdMS_TO_TICKS(TASK2_PERIOD_MS));
-        sharedStruct.k = 0;
-        ESP_LOGI(TAG, "2 - %lu %lu %lu",
+        sharedStruct.j = 222;
+        ESP_LOGI(TAG, "2 - %lu %lu",
                  sharedStruct.i,
-                 sharedStruct.j,
-                 sharedStruct.k);
+                 sharedStruct.j);
     }
 
 }
