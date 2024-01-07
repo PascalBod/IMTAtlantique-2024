@@ -19,7 +19,7 @@ typedef struct {
     uint32_t k;
 } sharedStruct_t;
 
-volatile sharedStruct_t sharedStruct = {0, 0, 0};
+static volatile sharedStruct_t sharedStruct = {0, 0, 0};
 
 void vTaskCode1(void *pvParameters) {
 
