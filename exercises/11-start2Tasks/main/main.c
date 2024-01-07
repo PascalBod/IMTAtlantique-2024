@@ -15,9 +15,6 @@ typedef struct {
     uint32_t task_period;
 } params_t;
 
-static params_t params1;
-static params_t params2;
-
 void vTaskCode(void *pvParameters) {
 
     params_t *paramsPtr = (params_t *)pvParameters;
@@ -31,7 +28,40 @@ void vTaskCode(void *pvParameters) {
 
 void app_main(void) {
 
-    // TODO - Start two tasks, the first one with a period of 500 ms, the second one
-    // with a period of 1 s.
+    params_t params;
+
+    // Start first task with task ID 0 and 500 ms for message period.
+    params.task_id = 0;
+    params.task_period = 500;
+
+    BaseType_t os_rs = xTaskCreatePinnedToCore(
+            vTaskCode,              // Task code.
+            "OurFirstTask",         // Task name.
+            2048,                   // Task stack depth (in bytes).
+            &params,                // Task parameters.
+            5,                      // Priority.
+            NULL,                   // Task handle (output). Not used here.
+            APP_CPU_NUM             // Run task on APP_CPU.
+            );
+    if (os_rs != pdPASS) {
+        ESP_LOGE(TAG, "Error from xTaskCreatePinnedToCore: %d", os_rs);
+    }
+
+    // Start second task with task ID 1 and 1 s for message period.
+    params.task_id = 1;
+    params.task_period = 1000;
+
+    os_rs = xTaskCreatePinnedToCore(
+            vTaskCode,              // Task code.
+            "OurSecondTask",        // Task name.
+            2048,                   // Task stack depth (in bytes).
+            &params,                // Task parameters.
+            5,                      // Priority.
+            NULL,                   // Task handle (output). Not used here.
+            APP_CPU_NUM             // Run task on APP_CPU.
+            );
+    if (os_rs != pdPASS) {
+        ESP_LOGE(TAG, "Error from xTaskCreatePinnedToCore: %d", os_rs);
+    }
 
 }
