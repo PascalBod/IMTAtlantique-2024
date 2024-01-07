@@ -6,8 +6,6 @@
 
 #include "esp_log.h"
 
-#define MAIN_LOOP_PERIOD_MS 5000
-
 static const char TAG[] = "011";
 
 typedef struct {
