@@ -13,9 +13,6 @@
 
 #define MUTEX_WAIT_PERIOD_MS    60000
 
-#define MULTIPLIER1 2
-#define MULTIPLIER2 3
-
 static const char TAG[] = "016";
 
 typedef struct {
