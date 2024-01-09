@@ -41,7 +41,8 @@ void app_main(void)
 		// a watchdog resets the microcontroller. Minimum period is 10 ms.
 		usleep(POLL_PERIOD_US);
 
-		// TODO - Answer the question: why the delay, above?
+		// TODO - Answer the question: why the delay, above, in addition to the
+		// watchdog constraint?
 
 		// TODO - Can you list two drawbacks of the "architecture" of this code?
 
