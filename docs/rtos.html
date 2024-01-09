@@ -47,6 +47,8 @@
                         <li><a href="#/concurrencyIntro">Introduction</a></li>
                         <li><a href="#/concurrencyMutex">Mutex</a></li>
                         <li><a href="#/practiceSharedStructureMutex"><b>Practice: shared structure with mutex</b></a></li>
+                        <li><a href="#/concurrencyPriorityInversion">Priority inversion</a></li>
+                        <li><a href="#/concurrencyDeadlock">Deadlock</a></li>
                     </ul>
                 </li>
               </ul>
@@ -55,8 +57,6 @@
               <ul>
                 <li><a>Concurrency - continued</a>
                     <ul>
-                        <li><a href="#/concurrencyPriorityInversion">Priority inversion</a></li>
-                        <li><a href="#/concurrencyDeadlock">Deadlock</a></li>
                         <li><a href="#/concurrencySemaphore">Semaphore</a></li>
                         <li><a href="#/practiceSemaphore01"><b>Practice: semaphore</b></a></li>
                     </ul>
@@ -65,9 +65,11 @@
                     <ul>
                         <li><a href="#/communicationIntroduction">Introduction</a></li>
                         <li><a href="#/communicationQueues">Queues</a></li>
+                        <li><a href="#/practiceQueueExample">Queue: example</a></li>
+                        <li><a href="#/practicePreventingDeadlocks"><b>Practice: preventing deadlocks</b></a></li>
                     </ul>
                 </li>
-                <li><a href="#/synchronization">Synchronization</a></li>
+                <li><a href="#/intermediateSummary1">Intermediate summary</a></li>
                 <li><a href="#/time">Time</a></li>
                 <li><a href="#/memoryAllocation">Memory allocation</a></li>
                 <li><a href="#/middleware">Middleware</a></li>
@@ -473,6 +475,9 @@ void vTaskCode(void *pvParameters) {
             <p>In real life (of an embedded developer), concurrency problems are far less evident than here &#x1F642;</p>
             <p class="fragment">They may occur on shared data, and on shared physical interfaces</p>
         </section>
+        <section>
+            <p>In next slides, we see how to handle this class of problems.</p>
+        </section>
         
         <!-- -------------------- Concurrency - introduction --------------------------------- -->
         
@@ -720,7 +725,7 @@ void vTaskCode(void *pvParameters) {
         <!-- -------------------- Practice: semaphore ------------------------ -->
         
         <section id="practiceSemaphore01">
-            <h3>Practice</h3>
+            <h3>Practice: semaphore</h3>
         </section>
         <section>
           <ul>
@@ -795,49 +800,87 @@ void vTaskCode(void *pvParameters) {
             <li><code>status_t queue_delete(queue_handle_t qh)</code></li>
           </ul>
         </section>
+        
+        <!-- -------------------- Practice: queue example ------------ -->
+        
+        <section id="practiceQueueExample">
+            <h3>Practice: queue example</h3>
+        </section>
         <section>
-          <h3>A good way to prevent deadlocks</h3>
+          <ul>
+            <li>Import the <code>15-queueExample</code> project from the <code>exercises</code> directory</li>
+            <li>Read the source code, build, flash, monitor</li>
+          </ul>
+          <p>Is the value of <code>QUEUE_LENGTH</code> important in this example?</p>
+          <p>In which (other) case can it be important?</p>
+        </section>
+        
+        <!-- -------------------- Practice: preventing deadlocks ------------ -->
+        
+        <section id="practicePreventingDeadlocks">
+          <h3>Queues: a good way to prevent deadlocks</h3>
           <ul>
             <li>Do not use critical sections to provide access to shared resources</li>
             <li>Use message queues to implement server tasks providing access to the resources</li>
           </ul>
         </section>
-        <section id="synchronization">
-          <h2>Synchronization</h2>
+        
+        <section>
+            <h3>Practice: remove a deadlock using a queue</h3>
         </section>
         <section>
-          <h3>Data synchronization</h3>
-          <ul>
-            <li>To ensure data integrity</li>
-            <li class="fragment fade-in">Tools: mutexes and semaphores</li>
-          </ul>
+            <ul>
+                <li>Import the <code>16-sharedStructures</code> project from the <code>exercises</code> directory</li>
+                <li>Read the source code, build, flash, monitor</li>
+            </ul>
+            <p>In a real application, identifying the origin of a deadlock may be far more difficult than here!</p>
         </section>
         <section>
-          <h3>Task synchronization</h3>
-          <ul>
-            <li>To let a task wait for one or more other tasks</li>
-            <li class="fragment fade-in">Tools: semaphores</li>
-            <li class="fragment fade-in">Tools: event flags and event groups</li>
-          </ul>
+            <p>Now, that's up to you:</p>
+            <ul>
+            <li>To remove the deadlock, use a queue instead of mutexes</li>
+            </ul>
+            <p>Hint: see the slide three slides before this one</p>
+        </section>
+        
+        <!-- -------------------- Intermediate summary 1 ------------ -->
+        
+        <section id="intermediateSummary1">
+            <h3>Intermediate summary</h3>
         </section>
         <section>
-          <h3>Event flags and event groups</h3>
-          <ul>
-            <li>Event flag: a bit used to signal an event</li>
-            <li>Event group: a set of event flags</li>
-            <li>A task may wait on one or more event flags, using an event group</li>
-          </ul>
+            <p>In a concurrent environment, sharing objects in the right way is difficult.</p>
+            <p>With a single core, disabling interrupts may be enough.</p>
+            <p>In a multicore environment, more sophisticated tools are required.</p>
         </section>
         <section>
-          <h3>API example</h3>
-          <ul>
-            <li><code>event_group_handle_t event_group_create()</code></li>
-            <li><code>event_bits_t event_group_set_bits(event_group_handle_t eh, event_bits_t bits)</code></li>
-            <li><code>event_bits_t event_group_clear_bits(event_group_handle_t eh, event_bits_t bits)</code></li>
-            <li><code>event_bits_t event_group_wait_bits(event_group_handle_t eh, event_bits_t bits, timeout_t timeout)</code></li>
-            <li><code>status_t event_group_delete(event_group_handle_t eh)</code></li>
-          </ul>
+            <p>To manage access to a shared object:</p>
+            <ul>
+                <li>A mutex</li>
+                <li class="fragment">...or a semaphore</li>
+                <li class="fragment">Must be used with caution!</li>
+            </ul>
         </section>
+        <section>
+            <p>To make a task wait on an event:</p>
+            <ul>
+                <li>A semaphore</li>
+                <li class="fragment">...or a mutex</li>
+            </ul>
+        </section>
+        <section>
+            <p>Another technical solution:</p>
+            <ul>
+                <li>A queue associated to  server</li>
+            </ul>
+            <p>Can remove many deadlock problems.</p>
+        </section>
+        <section>
+            <p>There are other tools: event flags, etc.</p>
+            <p>Check the documentation of your RTOS.</p>
+        </section>
+        
+        
         <section id="time">
           <h2>Time</h2>
         </section>
