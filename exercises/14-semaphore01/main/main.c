@@ -14,7 +14,7 @@
 
 #define NUMBER_OF_ACTIVE_TASKS 2
 
-static const char TAG[] = "011";
+static const char TAG[] = "014";
 
 typedef struct {
     uint32_t id;
