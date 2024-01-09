@@ -13,3 +13,7 @@ This repository contains material used for the *RTOS for embedded devices* cours
 > Eclipse and the plugin must have been installed before the first session, and an "Hello World" application must have been run on the ESP-EYE board, to ensure that everything is working correctly.
 
 Refer to these [instructions](prerequisites_instructions.md) to complete the prerequisites.
+
+## Course
+
+The course is at this URL: https://pascalbod.github.io/IMTAtlantique-2024/.
