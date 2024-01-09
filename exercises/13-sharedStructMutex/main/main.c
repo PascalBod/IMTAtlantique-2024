@@ -21,7 +21,7 @@ typedef struct {
     uint32_t j;
 } sharedStruct_t;
 
-static volatile sharedStruct_t sharedStruct = {0, 0};
+static sharedStruct_t sharedStruct = {0, 0};
 
 static SemaphoreHandle_t mutex;
 
