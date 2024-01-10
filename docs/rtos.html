@@ -37,8 +37,9 @@
                 <li><a href="#/tasks">Tasks</a></li>
                 <li><b>Practice: tasks</b>
                     <ul>
-                        <li><a href="#/practiceStartTask">Creating and starting a task</a></li>
-                        <li><a href="#/practiceStart2Tasks">Starting two tasks with bugs</a></li>
+                        <li><a href="#/practiceStartTask"><b>Creating and starting a task</b></a></li>
+                        <li><a href="#/practiceStart2Tasks"><b>Starting two tasks with bugs</b></a></li>
+                        <li><a href="#/practiceBtnLedTasks"><b>Button and LED with tasks</b></a></li>
                     </ul>
                 </li>
                 <li><a href="#/concurrencyControl">Concurrency control</a>
@@ -437,6 +438,20 @@ void vTaskCode(void *pvParameters) {
                 <li>Task parameters storage is deallocated while the tasks still need them</li>
             </ul>
             <p class="fragment">Always think twice before referencing a variable allocated in automatic storage.</p>
+        </section>
+        
+        <section id="practiceBtnLedTasks">
+            <h3>Practice: button and LED with tasks</h3>
+        </section>
+        
+        <section>
+          <ul>
+            <li>Create a new ESP-IDF project: <em>File > New > Espressif IDF Project</em>, naming it 
+                <code>11a-btnLedTasks</code></li>
+            <li>Copy files of <code>06-btnLed/main</code> into <code>11a-btnLedTasks/main</code> (replace the existing 
+                <code>main.c</code> and <code>CMakeLists.txt</code> files)</li>
+            <li>Modify the contents of the files to use FreeRTOS tasks instead of "bare metal" tasks</li>
+          </ul>
         </section>
         
         <!-- -------------------- Concurrency control ---------------------------------------- -->
