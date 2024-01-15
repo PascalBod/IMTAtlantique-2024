@@ -68,13 +68,20 @@
                         <li><a href="#/communicationQueues">Queues</a></li>
                         <li><a href="#/practiceQueueExample">Queue: example</a></li>
                         <li><a href="#/practicePreventingDeadlocks"><b>Practice: preventing deadlocks</b></a></li>
+                        <li><a href="#/practiceGettingAllPresses"><b>Practice: getting all presses</b></a></li>
+                        <li><a href="#/practiceBtnLedTasksBis"><b>Practice: button and LED tasks bis</b></a></li>
                     </ul>
                 </li>
                 <li><a href="#/intermediateSummary1">Intermediate summary</a></li>
                 <li><a href="#/time">Time</a></li>
                 <li><a href="#/memoryAllocation">Memory allocation</a></li>
                 <li><a href="#/middleware">Middleware</a></li>
-                <li><a href="#/toLearnMore">To learn more</a></li>
+                <li><b>Practice: more application examples</b>
+                    <ul>
+                        <li><a href="#/practiceScan"><b>Practice: Wi-Fi access point scanner</b></a></li>
+                        <li><a href="#/practiceBleGattServer"><b>Practice: BLE GATT server</b></a></li>
+                    </ul>
+                </li>
               </ul>
             </div>
           </div>
@@ -416,6 +423,8 @@ void vTaskCode(void *pvParameters) {
             <p><code>app_main</code> is not a normal FreeRTOS task: it may return.</p>
             <p class="pbsmaller">Note: the MMU is not a full MMU.</p>
         </section>
+        
+        <!-- -------------------- Practice: starting two tasks with bugs --------------------- -->
 
         <section id="practiceStart2Tasks">
           <h3>Practice: starting two tasks with bugs</h3>
@@ -439,6 +448,8 @@ void vTaskCode(void *pvParameters) {
             </ul>
             <p class="fragment">Always think twice before referencing a variable allocated in automatic storage.</p>
         </section>
+        
+        <!-- -------------------- Practice: button and LED with tasks --------------------- -->
         
         <section id="practiceBtnLedTasks">
             <h3>Practice: button and LED with tasks</h3>
@@ -855,6 +866,53 @@ void vTaskCode(void *pvParameters) {
             <p>Hint: see the slide three slides before this one</p>
         </section>
         
+        <!-- -------------------- Practice: getting all presses ------------ -->
+        
+        <section id="practiceGettingAllPresses">
+            <h3>Practice: getting all presses</h3>
+        </section>
+        <section>
+            <p>In the bare metal application, we saw that <a href="index.html#noFullCompliance1" target="_blank">
+                some button presses could be lost when the background task checks if the button was pressed</a>.</p>
+            <p>Your mission, should you choose to accept it, is to use a queue to ensure that not press is lost
+               between the ISR and the <code>app_main</code> task.</p>
+            <p>Additionally, time information of the press event should be the right one, i.e. not the one of the
+               reception of the press information by the <code>app_main</code> task. </p>
+        </section>
+        <section>
+            <ul>
+                <li>Import the <code>17-countPresses</code> project from the <code>exercises</code> directory</li>
+                <li>Add required code</li>
+            </ul>
+            <p>See some hints in next slide.</p>
+        </section>
+        <section>
+            <h4>Hints</h4>
+            <ul>
+                <li>To get time information: check this <a href="https://www.freertos.org/a00021.html"
+                    target="_blank">FreeRTOS documentation page</a>. The ESP32 does not maintain an absolute time,
+                    by default: look for a tick count</li>
+                <li>Some standard FreeRTOS functions should not be called from an ISR. But there are 
+                    specific versions of them which can be called from an ISR</li>
+            </ul>
+        </section>
+        
+        <!-- -------------------- Practice: button and LED tasks bis ------------ -->
+
+        <section id="practiceBtnLedTasksBis">
+            <h3>Practice: button and LED tasks bis</h3>
+        </section>
+
+        <section>
+          <ul>
+            <li>Create a new ESP-IDF project: <em>File > New > Espressif IDF Project</em>, naming it 
+                <code>18-btnLedTasks</code></li>
+            <li>Copy files of <code>11a-btnLedTasksSolution/main</code> into <code>18-btnLedTasks/main</code> (replace the
+                existing files)</li>
+            <li>Modify the contents of <code>btn_task.c</code> in order not to loose any button press</li>
+          </ul>
+        </section>
+        
         <!-- -------------------- Intermediate summary 1 ------------ -->
         
         <section id="intermediateSummary1">
@@ -892,6 +950,7 @@ void vTaskCode(void *pvParameters) {
             <p>Check the documentation of your RTOS.</p>
         </section>
         
+        <!-- -------------------- Time ------------ -->
         
         <section id="time">
           <h2>Time</h2>
@@ -906,6 +965,7 @@ void vTaskCode(void *pvParameters) {
             <li>Do not block in the callback function!</li>
           </ul>
         </section>
+        
         <section>
           <h3>API example</h3>
           <ul>
@@ -915,6 +975,18 @@ void vTaskCode(void *pvParameters) {
             <li><code>status_t timer_delete(timer_t timer)</code></li>
           </ul>
         </section>
+        
+        <section>
+            <h3>A note about timer of exercise 5</h3>
+            <ul>
+                <li>We called <code>esp_timer_create()</code> and <code>esp_timer_start_periodic()</code></li>
+                <li>These functions allow to use more (software) timers than the existing physical timers</li>
+                <li>These timers have less limitations than the FreeRTOS timers</li>
+                <li><a href="https://docs.espressif.com/projects/esp-idf/en/v5.0.5/esp32/api-reference/system/esp_timer.html"
+                    target="_blank">For more information</a></li>
+            </ul>
+        </section>
+        
         <section>
           <h3>Time functions</h3>
           <ul>
@@ -923,19 +995,13 @@ void vTaskCode(void *pvParameters) {
             <li>Function to convert time (e.g. POSIX format)</li>
           </ul>
         </section>
+        
+        <!-- -------------------- Memory allocation ------------ -->
+        
         <section id="memoryAllocation">
           <h2>Memory allocation</h2>
         </section>
-        <section>
-          <h3>Reminder</h3>
-          <p>Variables declared in functions are <a href="https://pascalbod.github.io/stm32-dev-en-presentation/#/31"
-                                                    target="_blank">allocated on the stack</a>.</p>
-          <ul>
-            <li>These variables are known as <em>automatic</em></li>
-            <li>They don't exist anymore when the function terminates</li>
-            <li>(Unless the <code>static</code> storage class is used...)</li>
-          </ul>
-        </section>
+
         <section>
           <h3>Automatic variables may not be enough</h3>
           <ul>
@@ -945,17 +1011,25 @@ void vTaskCode(void *pvParameters) {
             <li>Some data structures and associated operations may require dynamic memory (linked lists...)</li>
           </ul>
         </section>
+        
         <section>
           <h3>Dynamic memory allocation</h3>
           <ul>
             <li>Memory is allocated when the application requests it</li>
             <li>The application must release memory when no more used</li>
             <li>The memory is allocated from the <em>heap</em></li>
-            <li>The standard C library provides <code>malloc()</code> and <code>free()</code> functions</li>
-            <li>But usually they can't be used in a concurrent environment</li>
-            <li>&rArr; Usually, the RTOS provides its own functions</li>
+            <li><code>malloc()</code> and <code>free()</code> functions</li>
+            <li>Important: always check the documentation to understand usage and restrictions</li>
+            <li>For instance:
+                <ul>
+                    <li><a href="https://docs.espressif.com/projects/esp-idf/en/v5.0.4/esp32/api-reference/system/mem_alloc.html"
+                        target="_blank">ESP-IDF documentation</a></li>
+                    <li><a href="https://www.freertos.org/a00111.html" target="_blank">FreeRTOS documentation</a></li>
+                </ul>
+            </li>
           </ul>
         </section>
+        
         <section>
           <h3>Drawbacks of dynamic memory allocation</h3>
           <ul>
@@ -970,6 +1044,9 @@ void vTaskCode(void *pvParameters) {
           </ul>
           <p>&rArr; If possible, do not use dynamic memory allocation</p>
         </section>
+        
+        <!-- -------------------- Middleware ------------ -->
+        
         <section id="middleware">
           <h2>Middleware</h2>
         </section>
@@ -991,18 +1068,78 @@ void vTaskCode(void *pvParameters) {
           <p>Some components may be generic (RTOS independent) but may require some integration.</p>
           <p>&rArr; Check the ecosystem against your needs before choosing an RTOS</p>
         </section>
-        <section id="toLearnMore">
-          <h2>To learn more</h2>
-        </section>
+        
+        <!-- -------------------- Practice: more application examples ------------ -->
+        
         <section>
-          <ul>
-            <li><a href="https://www.freertos.org/FreeRTOS-quick-start-guide.html" target="_blank">
-                FreeRTOS - Kernel Quick Start Guide</a></li>
-            <li><a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
-                   target=""_blank>ESP-IDF - Get Started</a></li>
-            <li><a href="https://docs.zephyrproject.org/latest/introduction/index.html"
-                   target="_blank">Zephyr - Introduction</a></li>
-          </ul>
+          <h2>Practice: more application examples</h2>
+        </section>
+        
+        <!-- -------------------- Practice: scan --------------------------------- -->
+        
+        <section id="practiceScan">
+          <h3>Practice: scan</h2>
+        </section>
+        
+        <section>
+            <ul>
+                <li><em>File > New > Espressif IDF Project</em></li>
+                <li>Enter any project name you want</li>
+                <li>Click the <em>Next ></em> button</li>
+                <li>Tick <em>Create a project using one of the templates</em></li>
+                <li>Select <em>wifi > scan</em></li>
+                <li>Click the <em>Finish</em> button</li>
+                <li>Build, flash, monitor</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>A few words about the source code</h3>
+            <ul>
+                <li>Error handling: in case of error, the <code>ESP_ERROR_CHECK</code> macro prints a stack trace
+                    and restarts the application. Not used in our exercises to make them easier to read</li>
+                <li>NVS is initialized:
+                    <ul>
+                        <li>NVS stands for Non Volatile Storage - allows to store (key, value) tuples in Flash memory</li>
+                        <li>Required by the Wi-Fi driver</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><a href="https://docs.espressif.com/projects/esp-idf/en/v5.0.5/esp32/api-guides/wifi.html"
+                target="_blank">For more information</a>.</p>
+        </section>
+        
+        <!-- -------------------- Practice: BLE GATT server --------------------------------- -->
+        
+        <section id="practiceBleGattServer">
+          <h3>Practice: BLE GATT server</h2>
+        </section>
+        
+        <section>
+            <ul>
+                <li><em>File > New > Espressif IDF Project</em></li>
+                <li>Enter any project name you want</li>
+                <li>Click the <em>Next ></em> button</li>
+                <li>Tick <em>Create a project using one of the templates</em></li>
+                <li>Select <em>bluetooth > nimble > bleprph</em></li>
+                <li>Click the <em>Finish</em> button</li>
+                <li>Build, flash, monitor</li>
+                <li>On your smartphone, you can install the <em>EFR Connect</em> application
+                    (from Silicon Labs) to interact with the server</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>A few words about the example</h3>
+            <ul>
+                <li>The application starts a Bluetooth Low Energy GATT server</li>
+                <li>ESP-IDF provides two BLE stacks: Bluedroid (Bluetooth classic and BLE) and NimBLE
+                    (BLE only)</li>
+                <li>The example uses NimBLE stack</li>
+                <li>The Bluetooth stack requires lot of Flash memory</li>
+            </ul>
+            <p><a href="https://docs.espressif.com/projects/esp-idf/en/v5.0.5/esp32/api-reference/bluetooth/index.html"
+                target="_blank">For more information</a>.</p>
         </section>
 	
       </div>
