@@ -14,6 +14,10 @@ This repository contains material used for the *RTOS for embedded devices* cours
 
 Refer to these [instructions](prerequisites_instructions.md) to complete the prerequisites.
 
+## Running an ESP-WHO example
+
+ESP-WHO environnement, which allows to demontrate some ML applications on the ESP-EYE board, requires to run on an older version of ISP-IDF, for the ESP-EYE. Refer to these [instructions](esp_who_instructions.md) to install this older version of ESP-IDF and then to build and run an example.
+
 ## Course
 
 The course is at this URL: https://pascalbod.github.io/IMTAtlantique-2024/.
