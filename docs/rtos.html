@@ -50,6 +50,7 @@
                         <li><a href="#/practiceSharedStructureMutex"><b>Practice: shared structure with mutex</b></a></li>
                         <li><a href="#/concurrencyPriorityInversion">Priority inversion</a></li>
                         <li><a href="#/concurrencyDeadlock">Deadlock</a></li>
+                        <li><a href="#/concurrencySemaphore">Semaphore</a></li>
                     </ul>
                 </li>
               </ul>
@@ -58,7 +59,6 @@
               <ul>
                 <li><a>Concurrency - continued</a>
                     <ul>
-                        <li><a href="#/concurrencySemaphore">Semaphore</a></li>
                         <li><a href="#/practiceSemaphore01"><b>Practice: semaphore</b></a></li>
                     </ul>
                 </li>
@@ -291,12 +291,8 @@
               and starts the higher priority one
             </li>
             <li class="fragment fade-in">
-              <strong>Round-robin</strong> - every task in the set of tasks with same priority is
+              <strong>Round-robin time slicing</strong> - every task in the set of tasks with same priority is
               guaranteed to be executed after some time
-            </li>
-            <li class="fragment fade-in">
-              <strong>Time sliced</strong> - switching between tasks with same priority occurs on a 
-              periodic basis, after a fixed time period
             </li>
           </ul>
         </section>
