@@ -68,7 +68,9 @@ $ idf.py monitor
 
 # Run the example
 
-Connect a smartphone or a PC to the Wi-FI access point created by the application, and named *Human Face Detection*. Then, from the connected device, visit the following URL with a web browser: `http://192.168.4.1`.
+The application running on the ESP32 creates a Wi-Fi access point.
+
+Connect a smartphone or a PC to the Wi-FI access point (named *Human Face Detection*). Then, from the connected device, visit the following URL with a web browser: `http://192.168.4.1`.
 
 Click the *Start Stream* button, at the bottom of the web page.
 
