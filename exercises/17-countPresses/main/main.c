@@ -25,6 +25,7 @@ static QueueHandle_t queue;
 static void gpio_interrupt_handler(void *arg) {
 
     // TODO - Add some code here.
+    ESP_DRAM_LOGI(DRAM_TAG, "blablabla");
 
 }
 
