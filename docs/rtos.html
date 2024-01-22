@@ -78,6 +78,7 @@
                 <li><a href="#/middleware">Middleware</a></li>
                 <li><b>Practice: more application examples</b>
                     <ul>
+                        <li><a href="#/practiceUdpDatagrams"><b>Practice: exchanging UDP datagrams</b></a></li>
                         <li><a href="#/practiceScan"><b>Practice: Wi-Fi access point scanner</b></a></li>
                         <li><a href="#/practiceBleGattServer"><b>Practice: BLE GATT server</b></a></li>
                     </ul>
@@ -1073,6 +1074,34 @@ void vTaskCode(void *pvParameters) {
         
         <section>
           <h2>Practice: more application examples</h2>
+        </section>
+        
+        <!-- -------------------- Practice: UDP datagrams --------------------------------- -->
+        
+        <section id="practiceUdpDatagrams">
+            <h3>Pratice: exchanging UDP datagrams</h3>
+            <p>This example demonstrates a way to exchange UDP datagrams between an ESP32 and a computer.</p>
+            <p>The architecture of the ESP32 application relies on several tasks communicating and synchronizing
+               thanks to queues.</p>
+        </section>
+        
+        <section>
+            <ul>
+                <li>Clone the <a href="https://github.com/PascalBod/espidf-udp" target="_blank">
+                    espidf-udp repository</a></li>
+                <li>Go through the five steps:
+                    <ul>
+                        <li>01: let the ESP32 connect to a Wi-Fi access point</li>
+                        <li>02: start a Python UDP server on your computer</li>
+                        <li>03: let the ESP32 transmit UDP datagrams</li>
+                        <li>04: let the ESP32 receive UDP datagrams</li>
+                        <li>05: start a Python application transmitting UDP datagrams to the ESP32</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Important: the ESP32 and your computer must be in the same IP subnetwork</p>
+            <p>&rArr; Configure your mobile phone as a mobile Wi-Fi access point and configure the ESP32 and
+                your computer to use it.</p>
         </section>
         
         <!-- -------------------- Practice: scan --------------------------------- -->
