@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains material used for the *RTOS for embedded devices* course, to be delivered at IMT Atlantique in January 2024.
+This repository contains material used for the *RTOS for embedded devices* course, delivered at IMT Atlantique in January 2024.
 
 ## Prerequisites
 
